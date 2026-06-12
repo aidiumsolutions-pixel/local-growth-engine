@@ -1,29 +1,447 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
+import { SeoFooterSection } from "@/components/site/SeoFooterSection";
+import { HOME_FAQ, faqJsonLd } from "@/data/faq";
+
+const TITLE = "AI Automation Agency USA | Lead Generation & Appointment Booking — Aidium Solutions";
+const DESC = "Aidium Solutions builds AI automation, CRM, lead generation, and appointment booking systems for service businesses across Dallas, Houston, Austin, NYC, LA, Chicago, and more.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { name: "keywords", content: "AI automation agency, lead generation automation, appointment booking system, CRM automation, service business automation, Dallas, Houston, Austin, New York, Chicago, Los Angeles" },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      { type: "application/ld+json", children: JSON.stringify(faqJsonLd(HOME_FAQ)) },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <main>
+      <Hero />
+      <ProofBar />
+      <Problems />
+      <Steps />
+      <Services />
+      <Fit />
+      <Industries />
+      <Pricing />
+      <Testimonials />
+      <Faq />
+      <SeoFooterSection />
+      <FinalCta />
+    </main>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="hero">
+      <div className="hero-bg" />
+      <div className="hero-grid" />
+      <div className="hero-inner">
+        <div>
+          <div className="hero-eyebrow">
+            <span className="hero-eyebrow-dot" />
+            Done-For-You Growth Systems
+          </div>
+          <h1>Turn Visitors Into <em>Booked Appointments</em> Automatically</h1>
+          <p className="hero-sub">
+            AI-powered websites, follow-ups, and booking systems built for service businesses
+            that want predictable growth — without hiring extra staff.
+          </p>
+          <div className="hero-actions">
+            <BookCallButton />
+            <WhatsAppButton />
+          </div>
+          <div className="hero-stats">
+            <div>
+              <div className="hero-stat-num">3×</div>
+              <div className="hero-stat-label">Average booking increase</div>
+            </div>
+            <div>
+              <div className="hero-stat-num">7 days</div>
+              <div className="hero-stat-label">Average setup time</div>
+            </div>
+            <div>
+              <div className="hero-stat-num">24/7</div>
+              <div className="hero-stat-label">Automated follow-ups</div>
+            </div>
+          </div>
+        </div>
+        <div className="hero-visual">
+          <div style={{ position: "relative", padding: "24px 24px 40px 0" }}>
+            <div className="hero-card-main">
+              <div className="card-header">
+                <div className="card-dot" style={{ background: "#ff5f57" }} />
+                <div className="card-dot" style={{ background: "#febc2e" }} />
+                <div className="card-dot" style={{ background: "#28c840" }} />
+                <div className="card-label">Your Growth System</div>
+              </div>
+              <div className="flow-steps">
+                <FlowStep color="#5B7FFF" bg="rgba(91,127,255,0.1)" label="High-Converting Website" sub="Built to capture & convert visitors" />
+                <FlowStep color="#a855f7" bg="rgba(168,85,247,0.1)" label="Lead Capture System" sub="Every enquiry collected automatically" />
+                <FlowStep color="#fb923c" bg="rgba(251,146,60,0.1)" label="Automated Follow-Ups" sub="SMS & email sequences, 24/7" />
+                <FlowStep color="#22c55e" bg="rgba(34,197,94,0.1)" label="Appointment Booked" sub="Clients scheduled without lifting a finger" last />
+              </div>
+            </div>
+            <div className="hero-card-float float-1">
+              <div className="float-badge">
+                <div className="float-badge-icon" style={{ background: "rgba(34,197,94,0.1)" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
+                </div>
+                <div>
+                  <div className="float-badge-num">+312%</div>
+                  <div className="float-badge-text">More bookings this month</div>
+                </div>
+              </div>
+            </div>
+            <div className="hero-card-float float-2">
+              <div className="float-badge">
+                <div className="float-badge-icon" style={{ background: "rgba(91,127,255,0.1)" }}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B7FFF" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                </div>
+                <div>
+                  <div className="float-badge-num">7 days</div>
+                  <div className="float-badge-text">To full launch</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FlowStep({ color, bg, label, sub, last }: { color: string; bg: string; label: string; sub: string; last?: boolean }) {
+  return (
+    <div className="flow-step">
+      <div className="flow-icon" style={{ background: bg }}>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
+          <circle cx="12" cy="12" r="10" /><polyline points="9 12 11 14 15 10" />
+        </svg>
+      </div>
+      <div>
+        <div className="flow-step-label">{label}</div>
+        <div className="flow-step-sub">{sub}</div>
+      </div>
+      <div className="flow-arrow" style={last ? { color: "#22c55e" } : undefined}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
+      </div>
+    </div>
+  );
+}
+
+const Check = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12" /></svg>
+);
+
+function ProofBar() {
+  return (
+    <div className="proof-bar">
+      <div className="proof-inner">
+        {["No long-term contracts", "Live in 7 days or less", "Dedicated support team", "100% transparent pricing"].map((t, i, arr) => (
+          <span key={t} style={{ display: "contents" }}>
+            <div className="proof-item"><Check /> {t}</div>
+            {i < arr.length - 1 && <div className="proof-divider" />}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function Problems() {
+  const items = [
+    ["Missed Calls & Messages", "Leads try to reach you and hear nothing back. By the time you respond, they've already booked with a competitor."],
+    ["Leads Going Cold", "A prospect shows interest but never books. No system to follow up means the lead quietly disappears."],
+    ["Wasted Ad Spend", "You're paying to drive traffic to a website that doesn't convert. Money out, no bookings in."],
+    ["Too Much Manual Work", "Spreadsheets, DMs, reminders — it eats hours every week that should be spent on your actual work."],
+  ];
+  return (
+    <section>
+      <div className="section-inner">
+        <div style={{ marginBottom: 56 }}>
+          <div className="section-label">The Problem</div>
+          <h2 className="section-title">You're losing clients<br />every single day</h2>
+          <p className="section-sub">Most service businesses have the same four problems. We fix all of them — in one system.</p>
+        </div>
+        <div className="problem-grid">
+          {items.map(([h, p]) => (
+            <div key={h} className="problem-cell">
+              <div className="problem-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+              </div>
+              <h3>{h}</h3>
+              <p>{p}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Steps() {
+  const steps = [
+    ["01", "We Build Your System", "A high-converting website + lead capture + booking flow, tailored to your business. Up and running in 7 days."],
+    ["02", "Automation Kicks In", "Every new lead is automatically followed up via SMS and email. Reminders, nurture sequences — all hands-free."],
+    ["03", "Your Calendar Fills Up", "Clients book directly into your calendar. You wake up to confirmed appointments, without chasing anyone."],
+  ];
+  return (
+    <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      <div className="section-inner">
+        <div style={{ marginBottom: 64, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>The Solution</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to<br />more bookings</h2>
+        </div>
+        <div className="steps-row">
+          {steps.map(([n, h, p]) => (
+            <div key={n} className="step-card">
+              <div className="step-num">{n}</div>
+              <h3>{h}</h3>
+              <p>{p}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Services() {
+  const cards = [
+    ["#5B7FFF", "rgba(91,127,255,0.1)", "Website", "Built to convert visitors, not just look pretty."],
+    ["#a855f7", "rgba(168,85,247,0.1)", "Lead Forms", "Capture every enquiry effortlessly."],
+    ["#fb923c", "rgba(251,146,60,0.1)", "Auto Follow-Ups", "SMS & email sequences that run 24/7."],
+    ["#22c55e", "rgba(34,197,94,0.1)", "Booking System", "Let clients self-schedule directly."],
+    ["#FBBF24", "rgba(251,191,36,0.1)", "Dashboard", "Track leads and bookings in one place."],
+    ["#ec4899", "rgba(236,72,153,0.1)", "All Connected", "Every piece works together seamlessly."],
+  ];
+  return (
+    <section>
+      <div className="section-inner">
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "start" }}>
+          <div>
+            <div className="section-label">What We Build</div>
+            <h2 className="section-title">One connected system, zero extra tools</h2>
+            <p className="section-sub">Everything works together. No integrations to manage, no technical headaches.</p>
+            <div style={{ marginTop: 32 }}>
+              <BookCallButton label="Get Started" withIcon={false} />
+            </div>
+          </div>
+          <div className="services-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
+            {cards.map(([c, bg, h, p]) => (
+              <div key={h} className="service-card">
+                <div className="service-icon" style={{ background: bg }}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
+                </div>
+                <h3>{h}</h3>
+                <p>{p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Fit() {
+  const yes = [
+    "You want more booked calls and appointments",
+    "You miss leads or forget follow-ups",
+    "You want everything managed in one clean system",
+    "You're serious about growing your business",
+  ];
+  const no = [
+    "You only want a cheap, template website",
+    "You prefer managing everything manually",
+    "You're not ready to invest in growth",
+    "You don't want automation doing the work",
+  ];
+  return (
+    <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      <div className="section-inner">
+        <div style={{ marginBottom: 48, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>Is This For You?</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Be honest with yourself</h2>
+        </div>
+        <div className="fit-grid">
+          <div className="fit-card yes">
+            <div className="fit-header">
+              <div className="fit-header-icon" style={{ background: "rgba(91,127,255,0.15)", color: "#5B7FFF" }}><Check /></div>
+              <h3>This is for you if…</h3>
+            </div>
+            <ul className="fit-list">
+              {yes.map((y) => (
+                <li key={y}><span style={{ color: "#5B7FFF" }}><Check /></span>{y}</li>
+              ))}
+            </ul>
+          </div>
+          <div className="fit-card no">
+            <div className="fit-header">
+              <div className="fit-header-icon" style={{ background: "rgba(255,255,255,0.05)", color: "#888898" }}>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+              </div>
+              <h3 style={{ color: "var(--text-muted)" }}>This is NOT for you if…</h3>
+            </div>
+            <ul className="fit-list">
+              {no.map((n) => (
+                <li key={n}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#444455" strokeWidth="2"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
+                  {n}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Industries() {
+  const items = ["Salons & Spas", "Fitness Coaches", "Medical Practices", "Consultants", "Real Estate", "Home Services", "Legal Services", "Creative Services"];
+  return (
+    <section>
+      <div className="section-inner">
+        <div style={{ marginBottom: 48, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>Industries</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Perfect for service-based businesses</h2>
+          <p className="section-sub" style={{ margin: "16px auto 0", textAlign: "center" }}>If you take appointments, this system was built for you.</p>
+        </div>
+        <div className="industries-grid">
+          {items.map((i) => (
+            <div key={i} className="industry-card">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
+              <span>{i}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Pricing() {
+  const cards = [
+    { tier: "Starter", desc: "Get the foundation in place", features: ["Basic website", "Lead capture forms", "Basic follow-up sequences"], featured: false },
+    { tier: "Growth", desc: "Everything you need to scale", features: ["Full website (up to 5 pages)", "Complete automation system", "Booking system integration", "Monthly support included"], featured: true },
+    { tier: "Authority", desc: "Premium solution for ambitious growth", features: ["Advanced custom setup", "Full automation suite", "Priority support", "Performance reporting"], featured: false },
+  ];
+  return (
+    <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      <div className="section-inner">
+        <div style={{ marginBottom: 56, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>Pricing</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Simple, transparent pricing</h2>
+          <p className="section-sub" style={{ textAlign: "center", margin: "16px auto 0" }}>No hidden fees. No surprises. Just honest investment in your growth.</p>
+        </div>
+        <div className="pricing-grid">
+          {cards.map((c) => (
+            <div key={c.tier} className={`pricing-card${c.featured ? " featured" : ""}`}>
+              {c.featured && <div className="pricing-badge">Most Popular</div>}
+              <h3>{c.tier}</h3>
+              <p>{c.desc}</p>
+              <div className="pricing-cta-label">Contact Us</div>
+              <div className="pricing-cta-sub">for pricing</div>
+              <ul className="pricing-features">
+                {c.features.map((f) => (
+                  <li key={f}><Check /> {f}</li>
+                ))}
+              </ul>
+              <BookCallButton
+                className={c.featured ? "btn-primary" : "btn-secondary"}
+                label="Get Started"
+                withIcon={false}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+const REVIEWS = [
+  ["Within the first month, we went from 8 bookings a week to over 30. The automation handles everything we used to do manually.", "Sarah M.", "Medical Spa Owner"],
+  ["I was skeptical at first — I've tried a lot of agencies. But Aidium actually delivered. Appointments started filling up in week two.", "James T.", "Personal Fitness Coach"],
+  ["The follow-up system alone paid for itself. Leads that used to go cold are now booking calls without me doing anything.", "Priya K.", "Business Consultant"],
+  ["Professional, fast, and the results speak for themselves. Our no-show rate dropped massively thanks to their reminder sequences.", "David L.", "Dental Practice"],
+  ["Setup was done in under a week. I honestly couldn't believe how smooth the whole process was. Very professional team.", "Amina R.", "Real Estate Agent"],
+  ["ROI was almost instant. We made our investment back in the first three weeks. I refer every business owner I know to Aidium.", "Kevin S.", "Photography Studio"],
+  ["I finally have a website that actually works for my business. The booking system is seamless and clients love how easy it is.", "Tom B.", "Life Coach"],
+  ["The dashboard gives me visibility I never had before. I can see exactly where every lead comes from and how they convert.", "Patricia G.", "Marketing Agency"],
+];
+
+function Testimonials() {
+  const doubled = [...REVIEWS, ...REVIEWS];
+  return (
+    <section>
+      <div className="section-inner" style={{ marginBottom: 48 }}>
+        <div className="section-label" style={{ textAlign: "center" }}>Testimonials</div>
+        <h2 className="section-title" style={{ textAlign: "center" }}>What our clients say</h2>
+      </div>
+      <div className="reviews-outer">
+        <div className="reviews-track">
+          {doubled.map(([t, a, r], idx) => (
+            <div key={idx} className="review-card">
+              <div className="review-stars">★★★★★</div>
+              <p className="review-text">"{t}"</p>
+              <div className="review-author">{a}</div>
+              <div className="review-role">{r}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  return (
+    <section>
+      <div className="section-inner">
+        <div style={{ marginBottom: 48, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>FAQ</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Frequently asked questions</h2>
+        </div>
+        <div className="faq-list">
+          {HOME_FAQ.map((f) => (
+            <div key={f.q} className="faq-item">
+              <h3>{f.q}</h3>
+              <p>{f.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <div className="cta-section">
+      <div className="cta-inner">
+        <h2>Ready to grow your business?</h2>
+        <p>Book a free strategy call and we'll show you exactly how we can help you get more bookings on autopilot. No pressure, no commitment — just a conversation.</p>
+        <div className="cta-actions">
+          <BookCallButton label="Book Your Free Call" />
+          <WhatsAppButton />
+        </div>
+      </div>
     </div>
   );
 }
