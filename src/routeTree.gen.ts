@@ -14,6 +14,7 @@ import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as IndustriesIndustryRouteImport } from './routes/industries.$industry'
 
 const LocationsRoute = LocationsRouteImport.update({
   id: '/locations',
@@ -40,42 +41,69 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IndustriesIndustryRoute = IndustriesIndustryRouteImport.update({
+  id: '/$industry',
+  path: '/$industry',
+  getParentRoute: () => IndustriesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
-  '/industries': typeof IndustriesRoute
+  '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/industries/$industry': typeof IndustriesIndustryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
-  '/industries': typeof IndustriesRoute
+  '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/industries/$industry': typeof IndustriesIndustryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/$slug': typeof SlugRoute
   '/about': typeof AboutRoute
-  '/industries': typeof IndustriesRoute
+  '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/industries/$industry': typeof IndustriesIndustryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/$slug' | '/about' | '/industries' | '/locations'
+  fullPaths:
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/industries'
+    | '/locations'
+    | '/industries/$industry'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/$slug' | '/about' | '/industries' | '/locations'
-  id: '__root__' | '/' | '/$slug' | '/about' | '/industries' | '/locations'
+  to:
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/industries'
+    | '/locations'
+    | '/industries/$industry'
+  id:
+    | '__root__'
+    | '/'
+    | '/$slug'
+    | '/about'
+    | '/industries'
+    | '/locations'
+    | '/industries/$industry'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SlugRoute: typeof SlugRoute
   AboutRoute: typeof AboutRoute
-  IndustriesRoute: typeof IndustriesRoute
+  IndustriesRoute: typeof IndustriesRouteWithChildren
   LocationsRoute: typeof LocationsRoute
 }
 
@@ -116,14 +144,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/industries/$industry': {
+      id: '/industries/$industry'
+      path: '/$industry'
+      fullPath: '/industries/$industry'
+      preLoaderRoute: typeof IndustriesIndustryRouteImport
+      parentRoute: typeof IndustriesRoute
+    }
   }
 }
+
+interface IndustriesRouteChildren {
+  IndustriesIndustryRoute: typeof IndustriesIndustryRoute
+}
+
+const IndustriesRouteChildren: IndustriesRouteChildren = {
+  IndustriesIndustryRoute: IndustriesIndustryRoute,
+}
+
+const IndustriesRouteWithChildren = IndustriesRoute._addFileChildren(
+  IndustriesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SlugRoute: SlugRoute,
   AboutRoute: AboutRoute,
-  IndustriesRoute: IndustriesRoute,
+  IndustriesRoute: IndustriesRouteWithChildren,
   LocationsRoute: LocationsRoute,
 }
 export const routeTree = rootRouteImport
