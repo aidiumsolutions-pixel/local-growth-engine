@@ -11,6 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Nav } from "@/components/site/Nav";
+import { Footer } from "@/components/site/Footer";
+import { ContactForm } from "@/components/site/ContactForm";
+import { FormProvider } from "@/components/site/FormContext";
 
 function NotFoundComponent() {
   return (
@@ -77,19 +81,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Aidium Solutions — AI Automation & Lead Generation Agency" },
+      { name: "description", content: "Done-for-you AI automation, CRM, lead generation, and appointment booking systems for service businesses across the United States." },
+      { name: "author", content: "Aidium Solutions" },
+      { property: "og:title", content: "Aidium Solutions — AI Automation & Lead Generation Agency" },
+      { property: "og:description", content: "Done-for-you AI automation, CRM, lead generation, and appointment booking systems for service businesses across the United States." },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "Aidium Solutions" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Aidium Solutions",
+          url: "https://aidiumsolutions.com",
+          email: "aidiumsolutions@gmail.com",
+          description:
+            "AI automation, CRM, lead generation, and appointment booking systems for service businesses.",
+        }),
       },
     ],
   }),
@@ -105,7 +123,7 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
+      <body className="site">
         {children}
         <Scripts />
       </body>
@@ -118,8 +136,12 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <FormProvider>
+        <Nav />
+        <Outlet />
+        <Footer />
+        <ContactForm />
+      </FormProvider>
     </QueryClientProvider>
   );
 }
