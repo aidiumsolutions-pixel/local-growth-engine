@@ -362,7 +362,8 @@ const REVIEWS = [
 ];
 
 function Testimonials() {
-  const doubled = [...REVIEWS, ...REVIEWS];
+  const withAvatars = REVIEWS.map((r, i) => [...r, AVATARS[i % AVATARS.length]] as const);
+  const doubled = [...withAvatars, ...withAvatars];
   return (
     <section>
       <div className="section-inner" style={{ marginBottom: 48 }}>
@@ -371,12 +372,17 @@ function Testimonials() {
       </div>
       <div className="reviews-outer">
         <div className="reviews-track">
-          {doubled.map(([t, a, r], idx) => (
+          {doubled.map(([t, a, r, avatar], idx) => (
             <div key={idx} className="review-card">
               <div className="review-stars">★★★★★</div>
               <p className="review-text">"{t}"</p>
-              <div className="review-author">{a}</div>
-              <div className="review-role">{r}</div>
+              <div className="review-author-row">
+                <img className="review-avatar" src={avatar} alt={a} loading="lazy" />
+                <div>
+                  <div className="review-author">{a}</div>
+                  <div className="review-role">{r}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -408,10 +414,11 @@ function Faq() {
 
 function FinalCta() {
   return (
-    <div className="cta-section">
-      <div className="cta-inner">
+    <div className="cta-section cta-section-photo">
+      <img src={PHOTOS.cta} alt="" aria-hidden="true" />
+      <div className="cta-inner" style={{ position: "relative", zIndex: 1 }}>
         <h2>Ready to grow your business?</h2>
-        <p>Book a free strategy call and we'll show you exactly how we can help you get more bookings on autopilot. No pressure, no commitment — just a conversation.</p>
+        <p>Book a free 20-minute strategy call. We'll map out exactly how to get you more booked appointments — no pressure, no commitment.</p>
         <div className="cta-actions">
           <BookCallButton label="Book Your Free Call" />
           <WhatsAppButton />
