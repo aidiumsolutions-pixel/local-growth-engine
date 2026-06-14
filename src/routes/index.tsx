@@ -362,7 +362,7 @@ const REVIEWS = [
 ];
 
 function Testimonials() {
-  const withAvatars = REVIEWS.map((r, i) => [...r, AVATARS[i % AVATARS.length]] as const);
+  const withAvatars = REVIEWS.map((r, i) => [...r, AVATARS[i % AVATARS.length]]);
   const doubled = [...withAvatars, ...withAvatars];
   return (
     <section>
