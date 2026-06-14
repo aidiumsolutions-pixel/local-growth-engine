@@ -115,25 +115,6 @@ function Hero() {
   );
 }
 
-function FlowStep({ color, bg, label, sub, last }: { color: string; bg: string; label: string; sub: string; last?: boolean }) {
-  return (
-    <div className="flow-step">
-      <div className="flow-icon" style={{ background: bg }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-          <circle cx="12" cy="12" r="10" /><polyline points="9 12 11 14 15 10" />
-        </svg>
-      </div>
-      <div>
-        <div className="flow-step-label">{label}</div>
-        <div className="flow-step-sub">{sub}</div>
-      </div>
-      <div className="flow-arrow" style={last ? { color: "#22c55e" } : undefined}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-      </div>
-    </div>
-  );
-}
-
 const Check = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="20 6 9 17 4 12" /></svg>
 );
