@@ -422,6 +422,45 @@ html, body {
 .pricing-features li svg { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
 
 /* TESTIMONIALS */
+
+/* PHOTO BLOCKS */
+.hero-photo {
+  position: relative; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--line); aspect-ratio: 4/5;
+  background: var(--ink-soft);
+}
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0) 40%, rgba(10,10,15,0.55) 100%);
+}
+.hero-photo-badge {
+  position: absolute; left: 20px; bottom: 20px; right: 20px; z-index: 2;
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(10,10,15,0.7); backdrop-filter: blur(10px);
+  border: 1px solid var(--line); border-radius: 12px; padding: 12px 16px;
+}
+.hero-photo-badge-num { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: white; }
+.hero-photo-badge-text { font-size: 12px; color: var(--text-muted); }
+
+.step-photo { width: 100%; aspect-ratio: 16/10; border-radius: 12px; overflow: hidden; margin-bottom: 20px; border: 1px solid var(--line); }
+.step-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.review-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 1px solid var(--line); }
+.review-author-row { display: flex; align-items: center; gap: 12px; margin-top: 16px; }
+
+.cta-section-photo {
+  position: relative; overflow: hidden;
+  background: var(--ink-soft);
+}
+.cta-section-photo > img {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; opacity: 0.22; filter: grayscale(0.2);
+}
+.cta-section-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(10,10,15,0.7), rgba(10,10,15,0.92));
+}
 .reviews-outer { overflow: hidden; position: relative; }
 .reviews-outer::before, .reviews-outer::after { content: ''; position: absolute; top: 0; bottom: 0; width: 120px; z-index: 2; pointer-events: none; }
 .reviews-outer::before { left: 0; background: linear-gradient(90deg, var(--ink), transparent); }

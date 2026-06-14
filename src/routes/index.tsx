@@ -3,6 +3,26 @@ import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
 import { SeoFooterSection } from "@/components/site/SeoFooterSection";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
 
+// Real, non-AI Unsplash photography
+const PHOTOS = {
+  hero: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
+  step1: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=900&q=80",
+  step2: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80",
+  step3: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+  cta: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
+};
+
+const AVATARS = [
+  "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=200&q=80",
+  "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=200&q=80",
+];
+
 const TITLE = "AI Automation Agency USA | Lead Generation & Appointment Booking — Aidium Solutions";
 const DESC = "Aidium Solutions builds AI automation, CRM, lead generation, and appointment booking systems for service businesses across Dallas, Houston, Austin, NYC, LA, Chicago, and more.";
 
@@ -55,10 +75,10 @@ function Hero() {
             <span className="hero-eyebrow-dot" />
             Done-For-You Growth Systems
           </div>
-          <h1>Turn Visitors Into <em>Booked Appointments</em> Automatically</h1>
+          <h1>More Bookings. <em>Less Busywork.</em></h1>
           <p className="hero-sub">
-            AI-powered websites, follow-ups, and booking systems built for service businesses
-            that want predictable growth — without hiring extra staff.
+            We build websites, follow-ups and booking systems for service businesses —
+            so every lead gets answered and every calendar slot gets filled.
           </p>
           <div className="hero-actions">
             <BookCallButton />
@@ -80,66 +100,18 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div style={{ position: "relative", padding: "24px 24px 40px 0" }}>
-            <div className="hero-card-main">
-              <div className="card-header">
-                <div className="card-dot" style={{ background: "#ff5f57" }} />
-                <div className="card-dot" style={{ background: "#febc2e" }} />
-                <div className="card-dot" style={{ background: "#28c840" }} />
-                <div className="card-label">Your Growth System</div>
-              </div>
-              <div className="flow-steps">
-                <FlowStep color="#5B7FFF" bg="rgba(91,127,255,0.1)" label="High-Converting Website" sub="Built to capture & convert visitors" />
-                <FlowStep color="#a855f7" bg="rgba(168,85,247,0.1)" label="Lead Capture System" sub="Every enquiry collected automatically" />
-                <FlowStep color="#fb923c" bg="rgba(251,146,60,0.1)" label="Automated Follow-Ups" sub="SMS & email sequences, 24/7" />
-                <FlowStep color="#22c55e" bg="rgba(34,197,94,0.1)" label="Appointment Booked" sub="Clients scheduled without lifting a finger" last />
-              </div>
-            </div>
-            <div className="hero-card-float float-1">
-              <div className="float-badge">
-                <div className="float-badge-icon" style={{ background: "rgba(34,197,94,0.1)" }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
-                </div>
-                <div>
-                  <div className="float-badge-num">+312%</div>
-                  <div className="float-badge-text">More bookings this month</div>
-                </div>
-              </div>
-            </div>
-            <div className="hero-card-float float-2">
-              <div className="float-badge">
-                <div className="float-badge-icon" style={{ background: "rgba(91,127,255,0.1)" }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B7FFF" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                </div>
-                <div>
-                  <div className="float-badge-num">7 days</div>
-                  <div className="float-badge-text">To full launch</div>
-                </div>
+          <div className="hero-photo">
+            <img src={PHOTOS.hero} alt="Aidium Solutions team working with a client on their growth system" loading="eager" />
+            <div className="hero-photo-badge">
+              <div>
+                <div className="hero-photo-badge-num">+312%</div>
+                <div className="hero-photo-badge-text">Avg. more bookings in 60 days</div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function FlowStep({ color, bg, label, sub, last }: { color: string; bg: string; label: string; sub: string; last?: boolean }) {
-  return (
-    <div className="flow-step">
-      <div className="flow-icon" style={{ background: bg }}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2">
-          <circle cx="12" cy="12" r="10" /><polyline points="9 12 11 14 15 10" />
-        </svg>
-      </div>
-      <div>
-        <div className="flow-step-label">{label}</div>
-        <div className="flow-step-sub">{sub}</div>
-      </div>
-      <div className="flow-arrow" style={last ? { color: "#22c55e" } : undefined}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="9 18 15 12 9 6" /></svg>
-      </div>
-    </div>
   );
 }
 
@@ -164,18 +136,18 @@ function ProofBar() {
 
 function Problems() {
   const items = [
-    ["Missed Calls & Messages", "Leads try to reach you and hear nothing back. By the time you respond, they've already booked with a competitor."],
-    ["Leads Going Cold", "A prospect shows interest but never books. No system to follow up means the lead quietly disappears."],
-    ["Wasted Ad Spend", "You're paying to drive traffic to a website that doesn't convert. Money out, no bookings in."],
-    ["Too Much Manual Work", "Spreadsheets, DMs, reminders — it eats hours every week that should be spent on your actual work."],
+    ["Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
+    ["Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
+    ["Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
+    ["Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
   ];
   return (
     <section>
       <div className="section-inner">
         <div style={{ marginBottom: 56 }}>
           <div className="section-label">The Problem</div>
-          <h2 className="section-title">You're losing clients<br />every single day</h2>
-          <p className="section-sub">Most service businesses have the same four problems. We fix all of them — in one system.</p>
+          <h2 className="section-title">You're losing clients every day</h2>
+          <p className="section-sub">Four problems show up in almost every service business. We fix all four — in one system.</p>
         </div>
         <div className="problem-grid">
           {items.map(([h, p]) => (
@@ -195,20 +167,23 @@ function Problems() {
 
 function Steps() {
   const steps = [
-    ["01", "We Build Your System", "A high-converting website + lead capture + booking flow, tailored to your business. Up and running in 7 days."],
-    ["02", "Automation Kicks In", "Every new lead is automatically followed up via SMS and email. Reminders, nurture sequences — all hands-free."],
-    ["03", "Your Calendar Fills Up", "Clients book directly into your calendar. You wake up to confirmed appointments, without chasing anyone."],
+    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1],
+    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2],
+    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3],
   ];
   return (
     <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
       <div className="section-inner">
         <div style={{ marginBottom: 64, textAlign: "center" }}>
           <div className="section-label" style={{ textAlign: "center" }}>The Solution</div>
-          <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to<br />more bookings</h2>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to more bookings</h2>
         </div>
         <div className="steps-row">
-          {steps.map(([n, h, p]) => (
+          {steps.map(([n, h, p, img]) => (
             <div key={n} className="step-card">
+              <div className="step-photo">
+                <img src={img} alt={h as string} loading="lazy" />
+              </div>
               <div className="step-num">{n}</div>
               <h3>{h}</h3>
               <p>{p}</p>
@@ -387,7 +362,8 @@ const REVIEWS = [
 ];
 
 function Testimonials() {
-  const doubled = [...REVIEWS, ...REVIEWS];
+  const withAvatars = REVIEWS.map((r, i) => [...r, AVATARS[i % AVATARS.length]]);
+  const doubled = [...withAvatars, ...withAvatars];
   return (
     <section>
       <div className="section-inner" style={{ marginBottom: 48 }}>
@@ -396,12 +372,17 @@ function Testimonials() {
       </div>
       <div className="reviews-outer">
         <div className="reviews-track">
-          {doubled.map(([t, a, r], idx) => (
+          {doubled.map(([t, a, r, avatar], idx) => (
             <div key={idx} className="review-card">
               <div className="review-stars">★★★★★</div>
               <p className="review-text">"{t}"</p>
-              <div className="review-author">{a}</div>
-              <div className="review-role">{r}</div>
+              <div className="review-author-row">
+                <img className="review-avatar" src={avatar} alt={a} loading="lazy" />
+                <div>
+                  <div className="review-author">{a}</div>
+                  <div className="review-role">{r}</div>
+                </div>
+              </div>
             </div>
           ))}
         </div>
@@ -433,10 +414,11 @@ function Faq() {
 
 function FinalCta() {
   return (
-    <div className="cta-section">
-      <div className="cta-inner">
+    <div className="cta-section cta-section-photo">
+      <img src={PHOTOS.cta} alt="" aria-hidden="true" />
+      <div className="cta-inner" style={{ position: "relative", zIndex: 1 }}>
         <h2>Ready to grow your business?</h2>
-        <p>Book a free strategy call and we'll show you exactly how we can help you get more bookings on autopilot. No pressure, no commitment — just a conversation.</p>
+        <p>Book a free 20-minute strategy call. We'll map out exactly how to get you more booked appointments — no pressure, no commitment.</p>
         <div className="cta-actions">
           <BookCallButton label="Book Your Free Call" />
           <WhatsAppButton />
