@@ -136,18 +136,18 @@ function ProofBar() {
 
 function Problems() {
   const items = [
-    ["Missed Calls & Messages", "Leads try to reach you and hear nothing back. By the time you respond, they've already booked with a competitor."],
-    ["Leads Going Cold", "A prospect shows interest but never books. No system to follow up means the lead quietly disappears."],
-    ["Wasted Ad Spend", "You're paying to drive traffic to a website that doesn't convert. Money out, no bookings in."],
-    ["Too Much Manual Work", "Spreadsheets, DMs, reminders — it eats hours every week that should be spent on your actual work."],
+    ["Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
+    ["Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
+    ["Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
+    ["Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
   ];
   return (
     <section>
       <div className="section-inner">
         <div style={{ marginBottom: 56 }}>
           <div className="section-label">The Problem</div>
-          <h2 className="section-title">You're losing clients<br />every single day</h2>
-          <p className="section-sub">Most service businesses have the same four problems. We fix all of them — in one system.</p>
+          <h2 className="section-title">You're losing clients every day</h2>
+          <p className="section-sub">Four problems show up in almost every service business. We fix all four — in one system.</p>
         </div>
         <div className="problem-grid">
           {items.map(([h, p]) => (
@@ -167,20 +167,23 @@ function Problems() {
 
 function Steps() {
   const steps = [
-    ["01", "We Build Your System", "A high-converting website + lead capture + booking flow, tailored to your business. Up and running in 7 days."],
-    ["02", "Automation Kicks In", "Every new lead is automatically followed up via SMS and email. Reminders, nurture sequences — all hands-free."],
-    ["03", "Your Calendar Fills Up", "Clients book directly into your calendar. You wake up to confirmed appointments, without chasing anyone."],
+    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1],
+    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2],
+    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3],
   ];
   return (
     <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
       <div className="section-inner">
         <div style={{ marginBottom: 64, textAlign: "center" }}>
           <div className="section-label" style={{ textAlign: "center" }}>The Solution</div>
-          <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to<br />more bookings</h2>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to more bookings</h2>
         </div>
         <div className="steps-row">
-          {steps.map(([n, h, p]) => (
+          {steps.map(([n, h, p, img]) => (
             <div key={n} className="step-card">
+              <div className="step-photo">
+                <img src={img} alt={h as string} loading="lazy" />
+              </div>
               <div className="step-num">{n}</div>
               <h3>{h}</h3>
               <p>{p}</p>
