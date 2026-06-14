@@ -3,12 +3,16 @@ import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
 import { SeoFooterSection } from "@/components/site/SeoFooterSection";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
 
+import step1Img from "@/assets/step-1-build.jpg";
+import step2Img from "@/assets/step-2-automate.jpg";
+import step3Img from "@/assets/step-3-calendar.jpg";
+
 // Real, non-AI Unsplash photography
 const PHOTOS = {
   hero: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80",
-  step1: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?auto=format&fit=crop&w=900&q=80",
-  step2: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=900&q=80",
-  step3: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=900&q=80",
+  step1: step1Img,
+  step2: step2Img,
+  step3: step3Img,
   cta: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
 };
 
@@ -202,6 +206,7 @@ function Services() {
     ["#fb923c", "rgba(251,146,60,0.1)", "Auto Follow-Ups", "SMS & email sequences that run 24/7."],
     ["#22c55e", "rgba(34,197,94,0.1)", "Booking System", "Let clients self-schedule directly."],
     ["#FBBF24", "rgba(251,191,36,0.1)", "Dashboard", "Track leads and bookings in one place."],
+    ["#FBBC05", "rgba(251,188,5,0.12)", "Google Reviews", "Automated review requests that build 5-star social proof."],
     ["#ec4899", "rgba(236,72,153,0.1)", "All Connected", "Every piece works together seamlessly."],
   ];
   return (
