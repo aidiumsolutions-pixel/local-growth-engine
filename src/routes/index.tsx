@@ -75,10 +75,10 @@ function Hero() {
             <span className="hero-eyebrow-dot" />
             Done-For-You Growth Systems
           </div>
-          <h1>Turn Visitors Into <em>Booked Appointments</em> Automatically</h1>
+          <h1>More Bookings. <em>Less Busywork.</em></h1>
           <p className="hero-sub">
-            AI-powered websites, follow-ups, and booking systems built for service businesses
-            that want predictable growth — without hiring extra staff.
+            We build websites, follow-ups and booking systems for service businesses —
+            so every lead gets answered and every calendar slot gets filled.
           </p>
           <div className="hero-actions">
             <BookCallButton />
@@ -100,41 +100,12 @@ function Hero() {
           </div>
         </div>
         <div className="hero-visual">
-          <div style={{ position: "relative", padding: "24px 24px 40px 0" }}>
-            <div className="hero-card-main">
-              <div className="card-header">
-                <div className="card-dot" style={{ background: "#ff5f57" }} />
-                <div className="card-dot" style={{ background: "#febc2e" }} />
-                <div className="card-dot" style={{ background: "#28c840" }} />
-                <div className="card-label">Your Growth System</div>
-              </div>
-              <div className="flow-steps">
-                <FlowStep color="#5B7FFF" bg="rgba(91,127,255,0.1)" label="High-Converting Website" sub="Built to capture & convert visitors" />
-                <FlowStep color="#a855f7" bg="rgba(168,85,247,0.1)" label="Lead Capture System" sub="Every enquiry collected automatically" />
-                <FlowStep color="#fb923c" bg="rgba(251,146,60,0.1)" label="Automated Follow-Ups" sub="SMS & email sequences, 24/7" />
-                <FlowStep color="#22c55e" bg="rgba(34,197,94,0.1)" label="Appointment Booked" sub="Clients scheduled without lifting a finger" last />
-              </div>
-            </div>
-            <div className="hero-card-float float-1">
-              <div className="float-badge">
-                <div className="float-badge-icon" style={{ background: "rgba(34,197,94,0.1)" }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18" /><polyline points="17 6 23 6 23 12" /></svg>
-                </div>
-                <div>
-                  <div className="float-badge-num">+312%</div>
-                  <div className="float-badge-text">More bookings this month</div>
-                </div>
-              </div>
-            </div>
-            <div className="hero-card-float float-2">
-              <div className="float-badge">
-                <div className="float-badge-icon" style={{ background: "rgba(91,127,255,0.1)" }}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#5B7FFF" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                </div>
-                <div>
-                  <div className="float-badge-num">7 days</div>
-                  <div className="float-badge-text">To full launch</div>
-                </div>
+          <div className="hero-photo">
+            <img src={PHOTOS.hero} alt="Aidium Solutions team working with a client on their growth system" loading="eager" />
+            <div className="hero-photo-badge">
+              <div>
+                <div className="hero-photo-badge-num">+312%</div>
+                <div className="hero-photo-badge-text">Avg. more bookings in 60 days</div>
               </div>
             </div>
           </div>
