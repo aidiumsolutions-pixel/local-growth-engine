@@ -89,6 +89,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "Aidium Solutions" },
       { name: "twitter:card", content: "summary" },
+      { name: "twitter:title", content: "Aidium Solutions — AI Automation & Lead Generation Agency" },
+      { name: "twitter:description", content: "Done-for-you AI automation, CRM, lead generation, and appointment booking systems for service businesses across the United States." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/092efdcb-0741-4053-8c78-64d991d5c73c/id-preview-7e8ae989--6e7277f7-9725-4154-8495-92e4f9345141.lovable.app-1781531831280.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/092efdcb-0741-4053-8c78-64d991d5c73c/id-preview-7e8ae989--6e7277f7-9725-4154-8495-92e4f9345141.lovable.app-1781531831280.png" },
     ],
     links: [
       {
