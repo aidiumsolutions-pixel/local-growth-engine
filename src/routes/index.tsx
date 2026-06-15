@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
+import { SERVICES } from "@/data/services";
 import {
   PhoneOff,
   Snowflake,
@@ -9,6 +10,7 @@ import {
   Hammer,
   Zap,
   CalendarCheck,
+  ArrowRight,
 } from "lucide-react";
 
 import step1Img from "@/assets/step-1-build.jpg";
@@ -62,6 +64,7 @@ function Index() {
     <main>
       <Hero />
       <ProofBar />
+      <ServicesOverview />
       <Problems />
       <Steps />
       <Fit />
@@ -80,10 +83,6 @@ function Hero() {
       <div className="hero-grid" />
       <div className="hero-inner">
         <div>
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            Done-For-You Growth Systems
-          </div>
           <h1>More Bookings. <em>Less Busywork.</em></h1>
           <p className="hero-sub">
             We build websites, follow-ups and booking systems for service businesses —
