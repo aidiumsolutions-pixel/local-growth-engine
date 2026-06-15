@@ -142,6 +142,43 @@ function ProofBar() {
   );
 }
 
+function ServicesOverview() {
+  return (
+    <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      <div className="section-inner">
+        <div style={{ marginBottom: 56, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>What We Do</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Everything to turn visitors into booked clients</h2>
+        </div>
+        <div className="services-grid">
+          {SERVICES.map((s) => {
+            const Icon = s.icon;
+            return (
+              <Link
+                key={s.slug}
+                to="/services"
+                className="service-card"
+                style={{ textDecoration: "none", color: "inherit", display: "block" }}
+              >
+                <div className="service-icon" style={{ background: s.bg, color: s.color }}>
+                  <Icon size={22} strokeWidth={2} />
+                </div>
+                <h3>{s.name}</h3>
+                <p>{s.short}</p>
+              </Link>
+            );
+          })}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <Link to="/services" className="btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            View all services <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Problems() {
   const items: Array<[typeof PhoneOff, string, string]> = [
     [PhoneOff, "Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
