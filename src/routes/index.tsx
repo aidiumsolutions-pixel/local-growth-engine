@@ -1,7 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
-import { SeoFooterSection } from "@/components/site/SeoFooterSection";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
+import {
+  PhoneOff,
+  Snowflake,
+  TrendingDown,
+  ClipboardList,
+  Hammer,
+  Zap,
+  CalendarCheck,
+} from "lucide-react";
 
 import step1Img from "@/assets/step-1-build.jpg";
 import step2Img from "@/assets/step-2-automate.jpg";
@@ -56,13 +64,10 @@ function Index() {
       <ProofBar />
       <Problems />
       <Steps />
-      <Services />
       <Fit />
-      <Industries />
       <Pricing />
       <Testimonials />
       <Faq />
-      <SeoFooterSection />
       <FinalCta />
     </main>
   );
@@ -139,11 +144,11 @@ function ProofBar() {
 }
 
 function Problems() {
-  const items = [
-    ["Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
-    ["Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
-    ["Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
-    ["Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
+  const items: Array<[typeof PhoneOff, string, string]> = [
+    [PhoneOff, "Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
+    [Snowflake, "Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
+    [TrendingDown, "Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
+    [ClipboardList, "Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
   ];
   return (
     <section>
@@ -154,10 +159,10 @@ function Problems() {
           <p className="section-sub">Four problems show up in almost every service business. We fix all four — in one system.</p>
         </div>
         <div className="problem-grid">
-          {items.map(([h, p]) => (
+          {items.map(([Icon, h, p]) => (
             <div key={h} className="problem-cell">
               <div className="problem-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                <Icon size={22} strokeWidth={2} />
               </div>
               <h3>{h}</h3>
               <p>{p}</p>
@@ -170,10 +175,10 @@ function Problems() {
 }
 
 function Steps() {
-  const steps = [
-    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1],
-    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2],
-    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3],
+  const steps: Array<[string, string, string, string, typeof Hammer]> = [
+    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1, Hammer],
+    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2, Zap],
+    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3, CalendarCheck],
   ];
   return (
     <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
@@ -183,55 +188,17 @@ function Steps() {
           <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to more bookings</h2>
         </div>
         <div className="steps-row">
-          {steps.map(([n, h, p, img]) => (
+          {steps.map(([n, h, p, img, Icon]) => (
             <div key={n} className="step-card">
               <div className="step-photo">
                 <img src={img} alt={h as string} loading="lazy" />
+                <div className="step-photo-icon"><Icon size={20} strokeWidth={2.2} /></div>
               </div>
               <div className="step-num">{n}</div>
               <h3>{h}</h3>
               <p>{p}</p>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Services() {
-  const cards = [
-    ["#5B7FFF", "rgba(91,127,255,0.1)", "Website", "Built to convert visitors, not just look pretty."],
-    ["#a855f7", "rgba(168,85,247,0.1)", "Lead Forms", "Capture every enquiry effortlessly."],
-    ["#fb923c", "rgba(251,146,60,0.1)", "Auto Follow-Ups", "SMS & email sequences that run 24/7."],
-    ["#22c55e", "rgba(34,197,94,0.1)", "Booking System", "Let clients self-schedule directly."],
-    ["#FBBF24", "rgba(251,191,36,0.1)", "Dashboard", "Track leads and bookings in one place."],
-    ["#FBBC05", "rgba(251,188,5,0.12)", "Google Reviews", "Automated review requests that build 5-star social proof."],
-    ["#ec4899", "rgba(236,72,153,0.1)", "All Connected", "Every piece works together seamlessly."],
-  ];
-  return (
-    <section>
-      <div className="section-inner">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "start" }}>
-          <div>
-            <div className="section-label">What We Build</div>
-            <h2 className="section-title">One connected system, zero extra tools</h2>
-            <p className="section-sub">Everything works together. No integrations to manage, no technical headaches.</p>
-            <div style={{ marginTop: 32 }}>
-              <BookCallButton label="Get Started" withIcon={false} />
-            </div>
-          </div>
-          <div className="services-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
-            {cards.map(([c, bg, h, p]) => (
-              <div key={h} className="service-card">
-                <div className="service-icon" style={{ background: bg }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
-                </div>
-                <h3>{h}</h3>
-                <p>{p}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -286,29 +253,6 @@ function Fit() {
               ))}
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Industries() {
-  const items = ["Salons & Spas", "Fitness Coaches", "Medical Practices", "Consultants", "Real Estate", "Home Services", "Legal Services", "Creative Services"];
-  return (
-    <section>
-      <div className="section-inner">
-        <div style={{ marginBottom: 48, textAlign: "center" }}>
-          <div className="section-label" style={{ textAlign: "center" }}>Industries</div>
-          <h2 className="section-title" style={{ textAlign: "center" }}>Perfect for service-based businesses</h2>
-          <p className="section-sub" style={{ margin: "16px auto 0", textAlign: "center" }}>If you take appointments, this system was built for you.</p>
-        </div>
-        <div className="industries-grid">
-          {items.map((i) => (
-            <div key={i} className="industry-card">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
-              <span>{i}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>

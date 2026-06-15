@@ -11,6 +11,7 @@ export function Footer() {
         <div className="footer-links">
           <Link to="/">Home</Link>
           <Link to="/about">About</Link>
+          <Link to="/services">Services</Link>
           <Link to="/locations">Locations</Link>
           <Link to="/industries">Industries</Link>
           <a href="mailto:aidiumsolutions@gmail.com">aidiumsolutions@gmail.com</a>
