@@ -6,8 +6,6 @@ import {
   Snowflake,
   TrendingDown,
   ClipboardList,
-  Check as CheckIcon,
-  X as XIcon,
   Hammer,
   Zap,
   CalendarCheck,
