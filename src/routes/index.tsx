@@ -146,11 +146,11 @@ function ProofBar() {
 }
 
 function Problems() {
-  const items = [
-    ["Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
-    ["Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
-    ["Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
-    ["Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
+  const items: Array<[typeof PhoneOff, string, string]> = [
+    [PhoneOff, "Missed Calls & Messages", "Leads reach out and hear nothing back. They book with a competitor instead."],
+    [Snowflake, "Leads Going Cold", "Interest fades when there's no follow-up. The lead quietly disappears."],
+    [TrendingDown, "Wasted Ad Spend", "Traffic without conversion is money out the door — no bookings in."],
+    [ClipboardList, "Too Much Manual Work", "Spreadsheets, DMs and reminders eat hours you don't have."],
   ];
   return (
     <section>
@@ -161,10 +161,10 @@ function Problems() {
           <p className="section-sub">Four problems show up in almost every service business. We fix all four — in one system.</p>
         </div>
         <div className="problem-grid">
-          {items.map(([h, p]) => (
+          {items.map(([Icon, h, p]) => (
             <div key={h} className="problem-cell">
               <div className="problem-icon">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                <Icon size={22} strokeWidth={2} />
               </div>
               <h3>{h}</h3>
               <p>{p}</p>
@@ -177,10 +177,10 @@ function Problems() {
 }
 
 function Steps() {
-  const steps = [
-    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1],
-    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2],
-    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3],
+  const steps: Array<[string, string, string, string, typeof Hammer]> = [
+    ["01", "We Build Your System", "Website, lead capture and booking flow — tailored to your business. Live in 7 days.", PHOTOS.step1, Hammer],
+    ["02", "Automation Takes Over", "Every lead gets followed up by SMS and email. Reminders and nurture run hands-free.", PHOTOS.step2, Zap],
+    ["03", "Your Calendar Fills Up", "Clients self-schedule. You wake up to confirmed appointments — no chasing.", PHOTOS.step3, CalendarCheck],
   ];
   return (
     <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
@@ -190,10 +190,11 @@ function Steps() {
           <h2 className="section-title" style={{ textAlign: "center" }}>Three steps to more bookings</h2>
         </div>
         <div className="steps-row">
-          {steps.map(([n, h, p, img]) => (
+          {steps.map(([n, h, p, img, Icon]) => (
             <div key={n} className="step-card">
               <div className="step-photo">
                 <img src={img} alt={h as string} loading="lazy" />
+                <div className="step-photo-icon"><Icon size={20} strokeWidth={2.2} /></div>
               </div>
               <div className="step-num">{n}</div>
               <h3>{h}</h3>
