@@ -1,6 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
+import { SERVICES } from "@/data/services";
 import {
   PhoneOff,
   Snowflake,
@@ -9,6 +10,7 @@ import {
   Hammer,
   Zap,
   CalendarCheck,
+  ArrowRight,
 } from "lucide-react";
 
 import step1Img from "@/assets/step-1-build.jpg";
@@ -62,6 +64,7 @@ function Index() {
     <main>
       <Hero />
       <ProofBar />
+      <ServicesOverview />
       <Problems />
       <Steps />
       <Fit />
@@ -80,10 +83,6 @@ function Hero() {
       <div className="hero-grid" />
       <div className="hero-inner">
         <div>
-          <div className="hero-eyebrow">
-            <span className="hero-eyebrow-dot" />
-            Done-For-You Growth Systems
-          </div>
           <h1>More Bookings. <em>Less Busywork.</em></h1>
           <p className="hero-sub">
             We build websites, follow-ups and booking systems for service businesses —
@@ -140,6 +139,43 @@ function ProofBar() {
         ))}
       </div>
     </div>
+  );
+}
+
+function ServicesOverview() {
+  return (
+    <section style={{ background: "var(--ink-soft)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}>
+      <div className="section-inner">
+        <div style={{ marginBottom: 56, textAlign: "center" }}>
+          <div className="section-label" style={{ textAlign: "center" }}>What We Do</div>
+          <h2 className="section-title" style={{ textAlign: "center" }}>Everything to turn visitors into booked clients</h2>
+        </div>
+        <div className="services-grid">
+          {SERVICES.map((s) => {
+            const Icon = s.icon;
+            return (
+              <Link
+                key={s.slug}
+                to="/services"
+                className="service-card"
+                style={{ textDecoration: "none", color: "inherit", display: "block" }}
+              >
+                <div className="service-icon" style={{ background: s.bg, color: s.color }}>
+                  <Icon size={22} strokeWidth={2} />
+                </div>
+                <h3>{s.name}</h3>
+                <p>{s.short}</p>
+              </Link>
+            );
+          })}
+        </div>
+        <div style={{ textAlign: "center", marginTop: 40 }}>
+          <Link to="/services" className="btn-secondary" style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+            View all services <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 }
 
