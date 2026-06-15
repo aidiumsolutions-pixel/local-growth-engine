@@ -25,6 +25,7 @@ export function Nav() {
           <div className="nav-links">
             <Link to="/" activeOptions={{ exact: true }} activeProps={{ className: "active" }}>Home</Link>
             <Link to="/about" activeProps={{ className: "active" }}>About</Link>
+            <Link to="/services" activeProps={{ className: "active" }}>Services</Link>
             <Link to="/locations" activeProps={{ className: "active" }}>Locations</Link>
             <Link to="/industries" activeProps={{ className: "active" }}>Industries</Link>
             <a href="mailto:aidiumsolutions@gmail.com">Contact</a>
@@ -42,6 +43,7 @@ export function Nav() {
       <div className={`mobile-nav${mobileOpen ? " open" : ""}`}>
         <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
         <Link to="/about" onClick={() => setMobileOpen(false)}>About</Link>
+        <Link to="/services" onClick={() => setMobileOpen(false)}>Services</Link>
         <Link to="/locations" onClick={() => setMobileOpen(false)}>Locations</Link>
         <Link to="/industries" onClick={() => setMobileOpen(false)}>Industries</Link>
         <a href="mailto:aidiumsolutions@gmail.com">aidiumsolutions@gmail.com</a>

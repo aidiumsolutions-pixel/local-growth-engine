@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as LocationsRouteImport } from './routes/locations'
 import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as AboutRouteImport } from './routes/about'
@@ -20,6 +21,11 @@ import { Route as IndustriesIndustryRouteImport } from './routes/industries.$ind
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LocationsRoute = LocationsRouteImport.update({
@@ -59,6 +65,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
 }
@@ -68,6 +75,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
 }
@@ -78,6 +86,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/industries': typeof IndustriesRouteWithChildren
   '/locations': typeof LocationsRoute
+  '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
 }
@@ -89,6 +98,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/industries'
     | '/locations'
+    | '/services'
     | '/sitemap.xml'
     | '/industries/$industry'
   fileRoutesByTo: FileRoutesByTo
@@ -98,6 +108,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/industries'
     | '/locations'
+    | '/services'
     | '/sitemap.xml'
     | '/industries/$industry'
   id:
@@ -107,6 +118,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/industries'
     | '/locations'
+    | '/services'
     | '/sitemap.xml'
     | '/industries/$industry'
   fileRoutesById: FileRoutesById
@@ -117,6 +129,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   IndustriesRoute: typeof IndustriesRouteWithChildren
   LocationsRoute: typeof LocationsRoute
+  ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -127,6 +140,13 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/locations': {
@@ -192,18 +212,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   IndustriesRoute: IndustriesRouteWithChildren,
   LocationsRoute: LocationsRoute,
+  ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
