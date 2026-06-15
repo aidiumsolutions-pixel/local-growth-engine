@@ -1,7 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { BookCallButton, WhatsAppButton } from "@/components/site/CtaButton";
-import { SeoFooterSection } from "@/components/site/SeoFooterSection";
 import { HOME_FAQ, faqJsonLd } from "@/data/faq";
+import {
+  PhoneOff,
+  Snowflake,
+  TrendingDown,
+  ClipboardList,
+  Check as CheckIcon,
+  X as XIcon,
+  Hammer,
+  Zap,
+  CalendarCheck,
+} from "lucide-react";
 
 import step1Img from "@/assets/step-1-build.jpg";
 import step2Img from "@/assets/step-2-automate.jpg";
@@ -56,13 +66,10 @@ function Index() {
       <ProofBar />
       <Problems />
       <Steps />
-      <Services />
       <Fit />
-      <Industries />
       <Pricing />
       <Testimonials />
       <Faq />
-      <SeoFooterSection />
       <FinalCta />
     </main>
   );
