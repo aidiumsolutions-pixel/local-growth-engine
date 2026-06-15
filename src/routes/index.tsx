@@ -207,45 +207,6 @@ function Steps() {
   );
 }
 
-function Services() {
-  const cards = [
-    ["#5B7FFF", "rgba(91,127,255,0.1)", "Website", "Built to convert visitors, not just look pretty."],
-    ["#a855f7", "rgba(168,85,247,0.1)", "Lead Forms", "Capture every enquiry effortlessly."],
-    ["#fb923c", "rgba(251,146,60,0.1)", "Auto Follow-Ups", "SMS & email sequences that run 24/7."],
-    ["#22c55e", "rgba(34,197,94,0.1)", "Booking System", "Let clients self-schedule directly."],
-    ["#FBBF24", "rgba(251,191,36,0.1)", "Dashboard", "Track leads and bookings in one place."],
-    ["#FBBC05", "rgba(251,188,5,0.12)", "Google Reviews", "Automated review requests that build 5-star social proof."],
-    ["#ec4899", "rgba(236,72,153,0.1)", "All Connected", "Every piece works together seamlessly."],
-  ];
-  return (
-    <section>
-      <div className="section-inner">
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr", gap: 80, alignItems: "start" }}>
-          <div>
-            <div className="section-label">What We Build</div>
-            <h2 className="section-title">One connected system, zero extra tools</h2>
-            <p className="section-sub">Everything works together. No integrations to manage, no technical headaches.</p>
-            <div style={{ marginTop: 32 }}>
-              <BookCallButton label="Get Started" withIcon={false} />
-            </div>
-          </div>
-          <div className="services-grid" style={{ gridTemplateColumns: "1fr 1fr" }}>
-            {cards.map(([c, bg, h, p]) => (
-              <div key={h} className="service-card">
-                <div className="service-icon" style={{ background: bg }}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke={c} strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
-                </div>
-                <h3>{h}</h3>
-                <p>{p}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Fit() {
   const yes = [
     "You want more booked calls and appointments",
@@ -294,29 +255,6 @@ function Fit() {
               ))}
             </ul>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function Industries() {
-  const items = ["Salons & Spas", "Fitness Coaches", "Medical Practices", "Consultants", "Real Estate", "Home Services", "Legal Services", "Creative Services"];
-  return (
-    <section>
-      <div className="section-inner">
-        <div style={{ marginBottom: 48, textAlign: "center" }}>
-          <div className="section-label" style={{ textAlign: "center" }}>Industries</div>
-          <h2 className="section-title" style={{ textAlign: "center" }}>Perfect for service-based businesses</h2>
-          <p className="section-sub" style={{ margin: "16px auto 0", textAlign: "center" }}>If you take appointments, this system was built for you.</p>
-        </div>
-        <div className="industries-grid">
-          {items.map((i) => (
-            <div key={i} className="industry-card">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /></svg>
-              <span>{i}</span>
-            </div>
-          ))}
         </div>
       </div>
     </section>
