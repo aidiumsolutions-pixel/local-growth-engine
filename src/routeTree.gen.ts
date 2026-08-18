@@ -16,7 +16,10 @@ import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as SlugRouteImport } from './routes/$slug'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as IndustriesIndustryRouteImport } from './routes/industries.$industry'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
+import { Route as ApiPublicHooksGenerateBlogPostRouteImport } from './routes/api/public/hooks/generate-blog-post'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -53,11 +56,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndustriesIndustryRoute = IndustriesIndustryRouteImport.update({
   id: '/$industry',
   path: '/$industry',
   getParentRoute: () => IndustriesRoute,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicHooksGenerateBlogPostRoute =
+  ApiPublicHooksGenerateBlogPostRouteImport.update({
+    id: '/api/public/hooks/generate-blog-post',
+    path: '/api/public/hooks/generate-blog-post',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +86,10 @@ export interface FileRoutesByFullPath {
   '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
+  '/blog/': typeof BlogIndexRoute
+  '/api/public/hooks/generate-blog-post': typeof ApiPublicHooksGenerateBlogPostRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +99,10 @@ export interface FileRoutesByTo {
   '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
+  '/blog': typeof BlogIndexRoute
+  '/api/public/hooks/generate-blog-post': typeof ApiPublicHooksGenerateBlogPostRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +113,10 @@ export interface FileRoutesById {
   '/locations': typeof LocationsRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/industries/$industry': typeof IndustriesIndustryRoute
+  '/blog/': typeof BlogIndexRoute
+  '/api/public/hooks/generate-blog-post': typeof ApiPublicHooksGenerateBlogPostRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +128,10 @@ export interface FileRouteTypes {
     | '/locations'
     | '/services'
     | '/sitemap.xml'
+    | '/blog/$slug'
     | '/industries/$industry'
+    | '/blog/'
+    | '/api/public/hooks/generate-blog-post'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +141,10 @@ export interface FileRouteTypes {
     | '/locations'
     | '/services'
     | '/sitemap.xml'
+    | '/blog/$slug'
     | '/industries/$industry'
+    | '/blog'
+    | '/api/public/hooks/generate-blog-post'
   id:
     | '__root__'
     | '/'
@@ -120,7 +154,10 @@ export interface FileRouteTypes {
     | '/locations'
     | '/services'
     | '/sitemap.xml'
+    | '/blog/$slug'
     | '/industries/$industry'
+    | '/blog/'
+    | '/api/public/hooks/generate-blog-post'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,6 +168,9 @@ export interface RootRouteChildren {
   LocationsRoute: typeof LocationsRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  BlogSlugRoute: typeof BlogSlugRoute
+  BlogIndexRoute: typeof BlogIndexRoute
+  ApiPublicHooksGenerateBlogPostRoute: typeof ApiPublicHooksGenerateBlogPostRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -184,12 +224,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/industries/$industry': {
       id: '/industries/$industry'
       path: '/$industry'
       fullPath: '/industries/$industry'
       preLoaderRoute: typeof IndustriesIndustryRouteImport
       parentRoute: typeof IndustriesRoute
+    }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/blog/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/hooks/generate-blog-post': {
+      id: '/api/public/hooks/generate-blog-post'
+      path: '/api/public/hooks/generate-blog-post'
+      fullPath: '/api/public/hooks/generate-blog-post'
+      preLoaderRoute: typeof ApiPublicHooksGenerateBlogPostRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
@@ -214,6 +275,9 @@ const rootRouteChildren: RootRouteChildren = {
   LocationsRoute: LocationsRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  BlogSlugRoute: BlogSlugRoute,
+  BlogIndexRoute: BlogIndexRoute,
+  ApiPublicHooksGenerateBlogPostRoute: ApiPublicHooksGenerateBlogPostRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
