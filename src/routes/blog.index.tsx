@@ -6,7 +6,7 @@ const TITLE = "Service Business Growth Blog | AI Automation & Lead Gen Insights"
 const DESC = "Market trends, benchmarks and playbooks for HVAC, roofing, dental, med spa and other service businesses — written weekly by the Aidium Solutions research desk.";
 const URL = "https://localboost-automation.lovable.app/blog";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   loader: async () => ({ posts: await listBlogPosts() }),
   head: () => ({
     meta: [
